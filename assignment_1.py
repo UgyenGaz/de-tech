@@ -13,7 +13,18 @@ from sklearn.metrics import accuracy_score
 
 import streamlit as st
 
-df= pd.read_csv("card_transdata.csv")
+# Replace 'YOUR_SHAREABLE_LINK' with the actual shareable link obtained from Google Drive
+google_drive_link = 'https://drive.google.com/file/d/1N_g5d5fMgrHPsHrtUvZybEEp6YVQmfbY/view?usp=drive_link'
+
+# Extract file ID from the link
+df = google_drive_link.split('/')[-2]
+
+# Download dataset using file ID
+url = f'https://drive.google.com/uc?id={df}'
+response = requests.get(url)
+
+# Load dataset into pandas DataFrame
+df = pd.read_csv(url)
 
 df.head()
 
